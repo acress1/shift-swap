@@ -1,0 +1,28 @@
+{
+  "name": "shift-swap-app",
+  "version": "1.0.0",
+  "engines": {
+    "node": "13.3.0"
+  },
+  "description": "An app where employees can log in, post and claim shifts that need to be covered.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoganneF/Shift-Swap-App.git"
+  },
+  "author": "Loganne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LoganneF/Shift-Swap-App/issues"
+  },
+  "homepage": "https://github.com/LoganneF/Shift-Swap-App#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.9.3"
+  }
+}
