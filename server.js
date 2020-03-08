@@ -87,14 +87,14 @@ app.get("/", (req, res) => {
   });
 });
 
-/*
+
 app.post('/articles', (req, res)=>{
     req.body.author = req.session.currentUser.username;
     Article.create(req.body, (err, createdArticle)=>{
         res.redirect('/articles');
     });
 });
-*/
+
 
 //___________________
 // Routes

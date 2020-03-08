@@ -4,7 +4,33 @@ const Shift = require("../models/shifts.js");
 
 // NEW
 router.get("/new", (req, res) =>{
-    res.render("new.ejs")
+    res.render("new.ejs", {
+      currentUser: req.session.currentUser
+    })
+})
+
+router.get('/seed', async (req, res) => {
+  const newShifts =
+    [
+      {
+        name: {type: String, required: true },
+        date: {type: Number, required: true },
+        time: {type: Number, required: true },
+        position: {type: String, required: true }
+      }, {
+        name: {type: String, required: true },
+        date: {type: Number, required: true },
+        time: {type: Number, required: true },
+        position: {type: String, required: true }
+      }
+    ]
+
+  try {
+    const sendShifts = await Shift.create(newShifts)
+    res.send(sendShifts)
+  } catch (err) {
+    res.send(err.message)
+  }
 })
 
 // DELETE
@@ -42,15 +68,21 @@ router.post("/", (req,res) =>{
 
 // Index
 router.get("/", (req,res) => {
-      //Shift.find({}, (error, shifts) => {
+      Shift.find({}, (error, shifts) => {
         res.render("index.ejs", {
-          //shifts: shifts,
-          //urrentUser: req.session.currentUser
-       // })
+          shifts: shifts,
+          currentUser: req.session.currentUser
+        })
       })
 })
 
-//took seed route out
-//took show route out
+// SHOW
+router.get('/:id',(req,res)=>{
+  Shift.findById(req.params.id, (err, foundShift) => { 
+      res.render("show.ejs", {
+        shift: foundShift
+      });
+    });
+});
 
 module.exports = router;
