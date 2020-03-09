@@ -3,8 +3,8 @@ const router = express.Router()
 const Shift = require("../models/shifts.js");
 
 // NEW
-router.get("/new", (req, res) =>{
-    res.render("new.ejs", {
+router.get("/swap/new", (req, res) =>{
+    res.render("shifts/new.ejs", {
       currentUser: req.session.currentUser
     })
 })
@@ -34,14 +34,14 @@ router.get('/seed', async (req, res) => {
 })
 
 // DELETE
-router.delete("/:id", (req, res) =>{
+router.delete("/swap/:id", (req, res) =>{
   Shift.findByIdAndDelete(req.params.id, (err, data) =>{
     res.redirect('/swap')
   })
 })
 
 // EDIT
-router.get('/:id/edit', (req,res) =>{
+router.get('/swap/:id/edit', (req,res) =>{
   Shift.findById(req.params.id, (err, chosenShift) => {
     res.render(
       'edit.ejs',
@@ -54,7 +54,7 @@ router.get('/:id/edit', (req,res) =>{
 
 
 // PUT
-router.put('/:id', (req, res)=>{
+router.put('/swap/:id', (req, res)=>{
   Shift.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err,updateModel) =>{
     res.redirect('/swap')
   })
@@ -77,7 +77,7 @@ router.get("/", (req,res) => {
 })
 
 // SHOW
-router.get('/:id',(req,res)=>{
+router.get('/swap/:id',(req,res)=>{
   Shift.findById(req.params.id, (err, foundShift) => { 
       res.render("show.ejs", {
         shift: foundShift

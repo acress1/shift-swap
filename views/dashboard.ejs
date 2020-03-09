@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Welcome</title>
+  <title>Dashboard</title>
   <!-- Styling -->
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="js/bootstrap.min.js" crossorigin="anonymous"></script>
@@ -13,38 +13,10 @@
 
 <body>
 <!-- NEED NAV BAR AT TOP OF PAGE -->
-<div class="jumbotron">
-  <h1 class="display-4">
-    <!-- KEEP THIS FOR NOW TO KNOW IT WORKS. TAKE OUT LATER -->
-    <% if(currentUser) { %>
-      Welcome <%=currentUser.username%>!
-    <% } else { %>
-      Welcome!
-    <% } %>
 
-  </h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <a class="btn btn-primary btn-lg" href="/sessions/new" role="button">Log In</a>
-  <a class="btn btn-primary btn-lg" href="/users/new" role="button">Register</a>
-  <% if(currentUser) { %>
-  <form action="/sessions?_method=DELETE" method="POST" id="form1">
-    <!-- <input type="submit" value="Logout"/> -->
-  </form>
+  <form action="/sessions?_method=DELETE" method="POST" id="form1"></form>
   <button class="btn btn-primary btn-lg" type="submit" form="form1" value="Logout">Logout</button>
-  <% } %>
-</div>
-
-
-
-
-      <% if(currentUser) { %>
-     
-      <% } %>
-      
-    </ul>
-  </nav>
+  
 
   <!-- MAIN SECTION OF THE PAGE  -->
   <div class="container">
