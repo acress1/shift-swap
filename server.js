@@ -80,20 +80,25 @@ app.get('/app', (req, res)=>{
       res.redirect('/sessions/new');
   }
 });
-
+// //Dashboard route
+// app.get('/swap/dashboard', (req, res)=>{
+//   if(req.session.currentUser){
+//     res.render("dashboard.ejs")
+//   };
+// })
 app.get("/", (req, res) => {
   res.render("index.ejs", {
     currentUser: req.session.currentUser
   });
 });
 
-
-app.post('/articles', (req, res)=>{
-    req.body.author = req.session.currentUser.username;
-    Article.create(req.body, (err, createdArticle)=>{
-        res.redirect('/articles');
-    });
-});
+// I dont think i need this 
+// app.post('/articles', (req, res)=>{
+//     req.body.author = req.session.currentUser.username;
+//     Article.create(req.body, (err, createdArticle)=>{
+//         res.redirect('/articles');
+//     });
+// });
 
 
 //___________________
@@ -104,10 +109,11 @@ app.get('/' , (req, res) => {
   res.send('Hello World!');
 });
 
+//I dont think i need this 
 // wildcard route
-app.get("*", (req, res) => {
-  res.redirect("/swap");
-});
+// app.get("*", (req, res) => {
+//   res.redirect("/swap");
+// });
 
 //___________________
 //Listener

@@ -9,29 +9,25 @@ router.get("/swap/new", (req, res) =>{
     })
 })
 
-router.get('/seed', async (req, res) => {
-  const newShifts =
+router.get('/seed', (req, res) => {
+  Shift.create(
     [
       {
-        name: {type: String, required: true },
-        date: {type: Number, required: true },
-        time: {type: Number, required: true },
-        position: {type: String, required: true }
-      }, {
-        name: {type: String, required: true },
-        date: {type: Number, required: true },
-        time: {type: Number, required: true },
-        position: {type: String, required: true }
-      }
-    ]
-
-  try {
-    const sendShifts = await Shift.create(newShifts)
-    res.send(sendShifts)
-  } catch (err) {
-    res.send(err.message)
-  }
-})
+        name: "Ron",
+        date: 4/9/2020,
+        time: 9-5,
+        position: "Shift Supervisor"
+      }, 
+      {
+        name: "Veronica",
+        date: 4/1/2020,
+        time: 8-12,
+        position: "barista"
+      },
+    ]);
+    res.redirect("/swap");
+   
+});
 
 // DELETE
 router.delete("/swap/:id", (req, res) =>{
@@ -46,7 +42,8 @@ router.get('/swap/:id/edit', (req,res) =>{
     res.render(
       'edit.ejs',
       {
-        shifts: chosenShift
+        shift: chosenShift,
+        currentUser: req.session.currentUser
       }
     )
   })
@@ -68,21 +65,22 @@ router.post("/", (req,res) =>{
 
 // Index
 router.get("/", (req,res) => {
-      Shift.find({}, (error, shifts) => {
+      Shift.find({}, (error, shift) => {
         res.render("index.ejs", {
-          shifts: shifts,
+          shift: shift,
           currentUser: req.session.currentUser
         })
       })
 })
 
 // SHOW
-router.get('/swap/:id',(req,res)=>{
-  Shift.findById(req.params.id, (err, foundShift) => { 
-      res.render("show.ejs", {
-        shift: foundShift
-      });
-    });
-});
+// router.get('/swap/:id',(req,res)=>{
+//   Shift.findById(req.params.id, (err, foundShift) => { 
+//       res.render("show.ejs", {
+//         shift: foundShift,
+//          currentUser: req.session.currentUser
+//       });
+//     });
+// });
 
 module.exports = router;
