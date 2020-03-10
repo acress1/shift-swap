@@ -6,15 +6,12 @@
 </head>
 
 <body>
-
-  <% if(!currentUser) { %>
-      <%- include('../views/partials/login.ejs') %>
-    <% } else { %>
-      <%- include('../views/partials/dashboard.ejs') %>
+  <% if(!currentUser){ %>
+    <%- include('../views/partials/login.ejs') %>
+  <% } else { %>
+    <%- include('../views/partials/nav.ejs') %>
     <% } %>
-
-      
-
+  
 </body>
 
 </html>

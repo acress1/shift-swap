@@ -2,9 +2,20 @@ const express = require('express')
 const router = express.Router()
 const Shift = require("../models/shifts.js");
 
+//___________________
+//7 Restful Routes
+//___________________
+// Index  : GET    '/swap'          
+// Show   : GET    '/swap/:id'     
+// New    : GET    '/swap/newShift'      
+// Create : POST   '/swap'          
+// Edit   : GET    '/swap/:id/edit'
+// Update : PUT    '/swap/:id'      
+// Delete : DELETE '/swap/:id'      
+
 // NEW
-router.get("/swap/new", (req, res) =>{
-    res.render("shifts/new.ejs", {
+router.get("/newShift", (req, res) =>{
+    res.render("../shifts/new.ejs", {
       currentUser: req.session.currentUser
     })
 })
@@ -59,12 +70,13 @@ router.put('/swap/:id', (req, res)=>{
 
 // Create
 router.post("/", (req,res) =>{
-    Shift.create(req.body)
+    Shift.create(req.body, (err, data)=>{
     res.redirect("/swap")
-})
+});
+});
 
 // Index
-router.get("/", (req,res) => {
+router.get("/swap", (req,res) => {
       Shift.find({}, (error, shift) => {
         res.render("index.ejs", {
           shift: shift,
@@ -73,14 +85,14 @@ router.get("/", (req,res) => {
       })
 })
 
-// SHOW
-// router.get('/swap/:id',(req,res)=>{
-//   Shift.findById(req.params.id, (err, foundShift) => { 
-//       res.render("show.ejs", {
-//         shift: foundShift,
-//          currentUser: req.session.currentUser
-//       });
-//     });
-// });
+//SHOW
+router.get('/swap/:id',(req,res)=>{
+  Shift.findById(req.params.id, (err, foundShift) => { 
+      res.render("show.ejs", {
+        shift: foundShift,
+         currentUser: req.session.currentUser
+      });
+    });
+});
 
 module.exports = router;
