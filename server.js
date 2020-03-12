@@ -61,8 +61,8 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //___________________
 //Controllers
 //___________________
-const guidesController = require('./controllers/shifts.js')
-app.use('/swap', guidesController)
+const shiftsController = require('./controllers/shifts.js')
+app.use('/shifts', shiftsController)
 
 const usersController = require('./controllers/users.js')
 app.use('/users', usersController)
@@ -86,34 +86,20 @@ app.get('/app', (req, res)=>{
 //     res.render("dashboard.ejs")
 //   };
 // })
+
 app.get("/", (req, res) => {
   res.render("index.ejs", {
     currentUser: req.session.currentUser
   });
 });
 
-// I dont think i need this 
-// app.post('/articles', (req, res)=>{
-//     req.body.author = req.session.currentUser.username;
-//     Article.create(req.body, (err, createdArticle)=>{
-//         res.redirect('/articles');
-//     });
-// });
-
-
-//___________________
-// Routes
-//___________________
-//localhost:3000 
 app.get('/' , (req, res) => {
   res.send('Hello World!');
 });
 
-//I dont think i need this 
-// wildcard route
-// app.get("*", (req, res) => {
-//   res.redirect("/swap");
-// });
+
+
+
 
 //___________________
 //Listener
