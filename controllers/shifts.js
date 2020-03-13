@@ -51,9 +51,11 @@ router.put('/shift/:id', (req, res)=>{
 })
 
 // Create
-router.post("/shift", (req,res) =>{
+router.post("/", (req,res) =>{
+  console.log(req.body);
     Shift.create(req.body, (err, createdShift)=>{
       res.send(createdShift)
+      shifts.push(req.body);
       res.redirect("/")
 });
 });
@@ -62,7 +64,7 @@ router.post("/shift", (req,res) =>{
 router.get("/", (req,res) => {
   if(req.session.currentUser) {
       Shift.find({}, (error, shifts) => {
-        res.render("index.ejs", {shift: shifts, currentUser: req.session.currentUser});
+        res.render("index.ejs", {currentUser: req.session.currentUser, shifts: shifts});
       });
   } else {
     res.redirect("/sessions/new");
@@ -70,7 +72,8 @@ router.get("/", (req,res) => {
 })
 
 //SEED DATA
-router.get('/shift/seed', async (req, res) => {
+router.get('/seed', (req, res) => {
+  console.log("whatever")
   Shift.create( 
   [
       {
@@ -86,16 +89,16 @@ router.get('/shift/seed', async (req, res) => {
         position: "barista"
       }
     ], (err, data)=>{
-      res.redirect('/shift');
+      res.redirect('/');
   })
 });
 
 
 //SHOW
-router.get('/shift/:id',(req,res)=>{
+router.get('/:id',(req,res)=>{
   Shift.findById(req.params.id, (err, foundShift) => { 
       res.render("show.ejs", {
-        shift: foundShift,
+        shifts: foundShift,
          currentUser: req.session.currentUser
       });
     });
