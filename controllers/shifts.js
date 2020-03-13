@@ -78,14 +78,14 @@ router.get('/seed', (req, res) => {
   [
       {
         name: "Ron",
-        date: 4/9/2020,
-        time: 9-5,
+        date: 492020,
+        time: 95,
         position: "Shift Supervisor"
       }, 
       {
         name: "Veronica",
-        date: 4/1/2020,
-        time: 8-12,
+        date: 412020,
+        time: 812,
         position: "barista"
       }
     ], (err, data)=>{

@@ -12,15 +12,7 @@
     <%- include('../views/partials/nav.ejs') %>
     <%- include('../views/partials/dash.ejs') %>
     <% } %>
-   
-    
-      <ul>
-        <% for(let i=0; i< shifts.length; i++) { %>
-          <li><a href='/<%= shifts[i].id%>'><%=shifts[i].name%> </a>
-          </li>
-          <%}%>
-      </ul>
- 
+  
   
     <%- include("../views/partials/footer.ejs") %>
 </body>

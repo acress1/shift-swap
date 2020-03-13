@@ -6,15 +6,21 @@
 </head>
 
 <body>
-  <div class="content">
-    <ul>
-    <% for(let i=0; i< shifts.length; i++) { %>
-      <li><a href='/<%= shifts[i].id%>'><%=shifts[i].name%> </a>
-      </li>
-      <%}%>
-    </ul>
-    <p>Infor here</p>
-  </div>
+  <div class="content mx-auto">
+    
+    <div class="card mx-auto" id="list-item-1" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Position: <%=shifts.position%> </h5>
+        <h6 class="card-subtitle mb-2 text-muted">Posted by: <%=shifts.name%>  </h6>
+        <p class="card-text">Date: <%=shifts.date%></p>
+        <p class="card-text">Time: <%=shifts.time%></p>
+        <a href="#" class="card-link">Edit Shift</a>
+        <!-- make this link edit routes -->
+        <a href="#" class="card-link">Delete Shift</a>
+        <!-- make this link delete -->
+      </div>
+    </div>
+</div>
     <%- include("../views/partials/footer.ejs") %>
 </body>
 
