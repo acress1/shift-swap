@@ -3,20 +3,24 @@
 <h1 class="text-center">Available Shifts</h1>
           
 
-    <% for(let i=0; i< shifts.length; i++) { %>
+  <% for(let i=0; i< shifts.length; i++) { %>
     <div class="card d-flex flex-row" id="list-item-1" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">Position: <%=shifts[i].position%> </h5>
         <h6 class="card-subtitle mb-2 text-muted">Posted by: <%=shifts[i].name%>  </h6>
         <p class="card-text">Date: <%=shifts[i].date%></p>
         <p class="card-text">Time: <%=shifts[i].time%></p>
-        <a href="#" class="card-link">Edit Shift</a>
+        <a href="/<%=shifts[i].id; %>/edit" class="card-link">Edit Shift</a>
+    
         <!-- make this link edit routes -->
-        <a href="#" class="card-link">Delete Shift</a>
+        <!-- <a href="#" class="card-link">Delete Shift</a> -->
+        <form action="/<%=shifts[i].id; %>?_method=DELETE" method="POST">
+          <input type="submit" value="DELETE"/>
+        </form>
         <!-- make this link delete -->
       </div>
     </div>
-      <%}%>
+    <%}%>
   
   
    

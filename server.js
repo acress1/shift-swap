@@ -22,7 +22,8 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/27017";
 // Connect to Mongo
 mongoose.connect(MONGODB_URI ,  { 
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false
 });
 
 mongoose.connection.once("open", () => {
@@ -80,12 +81,6 @@ app.get('/app', (req, res)=>{
       res.redirect('/sessions/new');
   }
 });
-// //Dashboard route
-// app.get('/swap/dashboard', (req, res)=>{
-//   if(req.session.currentUser){
-//     res.render("dashboard.ejs")
-//   };
-// })
 
 app.get("/", (req, res) => {
   res.render("index.ejs", {

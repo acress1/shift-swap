@@ -23,20 +23,20 @@ router.get("/new", (req, res) =>{
 
 
 // DELETE
-router.delete("/shift/:id", (req, res) =>{
-  Shift.findByIdAndDelete(req.params.id, (err, data) =>{
+router.delete("/:id", (req, res) =>{
+  //res.send('deleting');
+  Shift.findByIdAndRemove(req.params.id, (err, data) =>{
     res.redirect('/')
   })
 })
 
 // EDIT
-router.get('/shift/:id/edit', (req,res) =>{
+router.get('/:id/edit', (req,res) =>{
   Shift.findById(req.params.id, (err, chosenShift) => {
-    res.render(
-      'edit.ejs',
+    console.log("chosenShift", chosenShift);
+    res.render('edit.ejs',
       {
-        shift: chosenShift,
-        currentUser: req.session.currentUser
+        shifts: chosenShift,
       }
     )
   })
@@ -44,7 +44,7 @@ router.get('/shift/:id/edit', (req,res) =>{
 
 
 // PUT
-router.put('/shift/:id', (req, res)=>{
+router.put('/:id', (req, res)=>{
   Shift.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err,updateModel) =>{
     res.redirect('/')
   })
@@ -52,23 +52,17 @@ router.put('/shift/:id', (req, res)=>{
 
 // Create
 router.post("/", (req,res) =>{
-  console.log(req.body);
     Shift.create(req.body, (err, createdShift)=>{
-      res.send(createdShift)
-      shifts.push(req.body);
-      res.redirect("/")
+      res.redirect("/");
 });
 });
 
 // Index
 router.get("/", (req,res) => {
-  if(req.session.currentUser) {
       Shift.find({}, (error, shifts) => {
         res.render("index.ejs", {currentUser: req.session.currentUser, shifts: shifts});
       });
-  } else {
-    res.redirect("/sessions/new");
-  }
+  
 })
 
 //SEED DATA
@@ -96,10 +90,9 @@ router.get('/seed', (req, res) => {
 
 //SHOW
 router.get('/:id',(req,res)=>{
-  Shift.findById(req.params.id, (err, foundShift) => { 
+  Shift.findById(req.params.id, (err, chosenShift) => { 
       res.render("show.ejs", {
-        shifts: foundShift,
-         currentUser: req.session.currentUser
+        shifts: chosenShift,
       });
     });
 });

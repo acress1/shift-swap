@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include("../views/partials/head.ejs") %>
+</head>
+
+<body>
+    <h1>Edit Shift</h1>
+    <div>
+      <form action="/<%=shifts.id; %>?_method=PUT" method="POST">
+        Date <input type="text" name="date" placeholder="Date"/><br/>
+        By <input type="text" name="by" placeholder="Your name"/><br/>
+        Time <input type="text" name="time" placeholder="Time"/><br/>
+        Position <input type="text" name="position" placeholder="position"/><br/>
+        <!-- add checkbox for claim that deativates post or changes color -->
+        <input type="Submit" name="name" value="Edit Shift"/><br/>
+      </form>
+  </div>
+
+    <%- include("../views/partials/footer.ejs") %>
+</body>
+
+</html>
