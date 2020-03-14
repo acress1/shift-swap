@@ -8,7 +8,7 @@ router.get("/new", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  req.body.username = req.body.username.toLowerCase()
+  req.body.username = req.body.username
   req.body.password = bcrypt.hashSync(
     req.body.password,
     bcrypt.genSaltSync(10)

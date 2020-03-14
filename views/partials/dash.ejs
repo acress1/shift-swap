@@ -1,28 +1,94 @@
-<!-- HOW DO I GET DATA IN HERE. WHATS HAPPENING -->
+<!-- HOW DO I GET DATA IN HERE. WHATS HAPPENING
        
 <h1 class="text-center">Available Shifts</h1>
-          
-
+scrollspy nav
+<div style="height: 400px" class="container">
+<nav id="navbar-example3" class="navbar navbar-light bg-light w-25 p-3 ">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <nav class="nav nav-pills flex-column" style="height: 100px">
+    <% for(let i=0; i< shifts.length; i++) { %>
+    <a class="nav-link list-group-item list-group-item-action" style"width: 20px; height: 40px; href="#item-1"><%=shifts[i].date%> - <%=shifts[i].position%></a>
+    <%}%>
+  </nav>
+</nav>
+scrollspy box
+<div data-spy="scroll" data-target="#list" data-offset="0" class="scrollspy overflow-y: scroll>
   <% for(let i=0; i< shifts.length; i++) { %>
-    <div class="card d-flex flex-row" id="list-item-1" style="width: 18rem;">
+    <div class="card d-flex flex-row" id="list-item-1" >
       <div class="card-body">
         <h5 class="card-title">Position: <%=shifts[i].position%> </h5>
         <h6 class="card-subtitle mb-2 text-muted">Posted by: <%=shifts[i].name%>  </h6>
         <p class="card-text">Date: <%=shifts[i].date%></p>
         <p class="card-text">Time: <%=shifts[i].time%></p>
+        EDIT
         <a href="/<%=shifts[i].id; %>/edit" class="card-link">Edit Shift</a>
-    
-        <!-- make this link edit routes -->
-        <!-- <a href="#" class="card-link">Delete Shift</a> -->
+        DELETE
         <form action="/<%=shifts[i].id; %>?_method=DELETE" method="POST">
           <input type="submit" value="DELETE"/>
         </form>
-        <!-- make this link delete -->
       </div>
     </div>
-    <%}%>
+</div>
+  <%}%>
+</div>
   
-  
-   
+    -->
 
 
+<!-- Page Content -->
+<div class="container">
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Position</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Posted By</th>
+            <th scope="col">Claim Shift</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% for(let i=0; i<shifts.length; i++){ %>
+          <tr>
+            <td><%= shifts[i].position%></td>
+            <td><%= shifts[i].date%></td>
+            <td><%= shifts[i].time%></td>
+            <td><%= shifts[i].name%></td> 
+            <td><input type="checkbox" aria-label="Checkbox for following text input"></td>  
+          </tr>
+          
+        <%}%>
+      </table>
+    
+      <!-- Pagination -->
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+        </li>
+      </ul>
+    
+    </div>
+    <!-- /.container -->
+    </div>
+  </div>
+</div>

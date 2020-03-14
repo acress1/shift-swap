@@ -51,7 +51,7 @@ router.put('/:id', (req, res)=>{
 })
 
 // Create
-router.post("/", (req,res) =>{
+router.post("/new", (req,res) =>{
     Shift.create(req.body, (err, createdShift)=>{
       res.redirect("/");
 });
@@ -67,20 +67,44 @@ router.get("/", (req,res) => {
 
 //SEED DATA
 router.get('/seed', (req, res) => {
-  console.log("whatever")
   Shift.create( 
   [
       {
         name: "Ron",
-        date: 492020,
-        time: 95,
+        date: "04/09/20",
+        time: "9am-5pm",
         position: "Shift Supervisor"
       }, 
       {
         name: "Veronica",
-        date: 412020,
-        time: 812,
-        position: "barista"
+        date: "04/12/20",
+        time: "8-12pm",
+        position: "Barista"
+      },
+      {
+        name: "Maddie",
+        date: "04/12/20",
+        time: "8am-12pm",
+        position: "Barista"
+      },
+      {
+
+        name: "Nick",
+        date: "04/22/20",
+        time: "9am-5pm",
+        position: "Shift Supervisor"
+      }, 
+      {
+        name: "Veronica",
+        date: "04/24/20",
+        time: "7am-12pm",
+        position: "Barista"
+      },
+      {
+        name: "Hunter",
+        date: "04/27/20",
+        time: "8am-3pm",
+        position: "Barista"
       }
     ], (err, data)=>{
       res.redirect('/');
